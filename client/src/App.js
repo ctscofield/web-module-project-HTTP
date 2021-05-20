@@ -26,6 +26,36 @@ const App = (props) => {
   }, []);
 
   const deleteMovie = (id)=> {
+
+    const newMovies = movies.filter((obj) => {
+      return obj.id !== id;
+    })
+
+    setMovies(newMovies);
+
+    // movies.filter(setMovies, `${id}`);
+
+    // let newMovies = movies.filter = e => {
+    //   return e.id !== movies.id;
+    // }
+
+    // let newMovies = [];
+    // for (let i = 0; i < movies.length; i++) {
+    //   if (movies[i].id !== `${movies.id}`) {
+    //     newMovies.push(movies[i]);
+    //   }
+    // }
+    // console.log(newMovies);
+
+  //   movies.filter((obj) => {
+  //   return obj.id !== movies;
+  // })
+
+    // movies.filter(id !== movies);
+
+    // movies.filter((obj) => {
+    //   return obj.id !== movies;
+    // })
   }
 
   const addToFavorites = (movie) => {
@@ -48,9 +78,9 @@ const App = (props) => {
               render={(props) => <EditMovieForm {...props} setMovies={setMovies}/>}
             />
 
-            <Route path="/movies/:id">
-              <Movie/>
-            </Route>
+            <Route path="/movies/:id"
+              render={(props) => <Movie {...props} deleteMovie={deleteMovie}/> }
+            />
 
             <Route path="/movies">
               <MovieList movies={movies}/>
